@@ -1,0 +1,240 @@
+---
+MainSourceFile:  '/home/administrator/Milun/jaden/workspace/mini-caffe/build_cuda/dpct_out/include/caffe/logging.hpp'
+Replacements:
+  - FilePath:        '/home/administrator/Milun/jaden/workspace/mini-caffe/include/caffe/logging.hpp'
+    Offset:          237
+    Length:          0
+    ReplacementText: "#include <CL/sycl.hpp>\n#include <dpct/dpct.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/administrator/Milun/jaden/workspace/mini-caffe/include/caffe/logging.hpp'
+    Offset:          1299
+    Length:          1
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/administrator/Milun/jaden/workspace/mini-caffe/include/caffe/logging.hpp'
+    Offset:          1311
+    Length:          1
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+DpctVersion:     2022.0.0
+MainHelperFileName: dpct
+USMLevel:        ''
+FeatureMap:
+  algorithm.h:
+    sort:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/bbox_util.cu'
+      FeatureName:     sort
+      SubFeatureMap:   {}
+  blas_utils.hpp:
+    get_value:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cu'
+      FeatureName:     get_value
+      SubFeatureMap:   {}
+  device.hpp:
+    dev_mgr:
+      IsCalled:        false
+      FeatureName:     ''
+      SubFeatureMap:
+        dev_mgr_current_device_id:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/common.cpp'
+            - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/syncedmem.cpp'
+          FeatureName:     'dev_mgr::current_device_id'
+          SubFeatureMap:   {}
+        dev_mgr_device_count:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/common.cpp'
+          FeatureName:     'dev_mgr::device_count'
+          SubFeatureMap:   {}
+        dev_mgr_select_device:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/common.cpp'
+            - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/syncedmem.cpp'
+          FeatureName:     'dev_mgr::select_device'
+          SubFeatureMap:   {}
+    device_ext:
+      IsCalled:        false
+      FeatureName:     ''
+      SubFeatureMap:
+        device_ext_default_queue:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/scale_layer.cu'
+            - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/syncedmem.cpp'
+          FeatureName:     'device_ext::default_queue'
+          SubFeatureMap:   {}
+    get_current_device:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/scale_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/syncedmem.cpp'
+      FeatureName:     get_current_device
+      SubFeatureMap:   {}
+    get_default_queue:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/common.cpp'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/bias_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/bnll_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/concat_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/conv_dw_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/crop_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/eltwise_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/elu_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/embed_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/lrn_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/normalize_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/permute_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/pooling_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/prelu_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/proposal_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/psroi_pooling_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/relu_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/roi_pooling_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/scale_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/shuffle_channel_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/sigmoid_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/slice_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/softmax_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/tanh_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/threshold_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/layers/tile_layer.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/syncedmem.cpp'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/bbox_util.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/im2col.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cpp'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.hpp'
+      FeatureName:     get_default_queue
+      SubFeatureMap:   {}
+  dpct.hpp:
+    dpct_align_and_inline:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/usr/include/google/protobuf/arena.h'
+      FeatureName:     '__dpct_align__(n) and __dpct_inline__'
+      SubFeatureMap:   {}
+  dpl_utils.hpp:
+    non_local_include_dependency:
+      IsCalled:        true
+      CallerSrcFiles:
+        - ''
+      FeatureName:     ''
+      SubFeatureMap:   {}
+  memory.hpp:
+    dpct_memcpy:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cpp'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cu'
+      FeatureName:     dpct_memcpy
+      SubFeatureMap:   {}
+    dpct_memcpy_2d:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cpp'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cu'
+      FeatureName:     dpct_memcpy
+      SubFeatureMap:   {}
+    dpct_memcpy_3d:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cpp'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cu'
+      FeatureName:     dpct_memcpy
+      SubFeatureMap:   {}
+    dpct_memset:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.hpp'
+      FeatureName:     dpct_memset
+      SubFeatureMap:   {}
+    dpct_memset_2d:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.hpp'
+      FeatureName:     dpct_memset
+      SubFeatureMap:   {}
+    dpct_memset_3d:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cu'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.hpp'
+      FeatureName:     dpct_memset
+      SubFeatureMap:   {}
+    memcpy_direction:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cpp'
+        - '/home/administrator/Milun/jaden/workspace/mini-caffe/src/util/math_functions.cu'
+      FeatureName:     memcpy_direction
+      SubFeatureMap:   {}
+CompileTargets:  {}
+OptionMap:
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           '/home/administrator/Milun/jaden/workspace/mini-caffe/build_cuda'
+    Specified:       true
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  CustomHelperFileName:
+    Value:           dpct
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionFlag:
+    Value:           '4294967295'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...
