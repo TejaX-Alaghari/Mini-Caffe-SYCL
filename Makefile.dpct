@@ -6,7 +6,7 @@ LD := $(CC)
 LIB :=
 #LIB := -v ${LIB}
 #LIB := -shared ${LIB}
-LIB := -L/opt/intel/oneapi/compiler/2022.0.2/linux/compiler/lib/intel64_lin -lirc ${LIB}
+LIB := -L/opt/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin -lirc ${LIB}
 LIB := -lprotobuf -lopenblas ${LIB}
 LIB := -g ${LIB}
 
