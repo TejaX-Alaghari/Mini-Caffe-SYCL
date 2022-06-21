@@ -2,18 +2,19 @@ CC := clang++ -fsycl -fsycl-targets=nvptx64-nvidia-cuda
 MKL_HOME := /home/administrator/Milun/jaden/workspace/applications/mini-caffe/deps/lib/oneMKL/BLAS
 IRC_LIB := /opt/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin
 
+DEBUG := -g
+
 LD := $(CC)
 
 #DPCT2001:141: You can link with more library by add them here.
 LIB :=
-#LIB := -v ${LIB}
+LIB := ${DEBUG} ${LIB}
 #LIB := -shared ${LIB}
 LIB := -L${IRC_LIB} -lirc ${LIB}
 LIB := -lprotobuf -lopenblas ${LIB}
-LIB := -g ${LIB}
 
 FLAGS := 
-# FLAGS := -g
+FLAGS := ${DEBUG} ${FLAGS}
 FLAGS := -fPIC ${FLAGS}
 FLAGS := -DPSTL_USE_PARALLEL_POLICIES=0 ${FLAGS}
 FLAGS := -I${MKL_HOME}/include ${FLAGS}
