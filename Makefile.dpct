@@ -1,6 +1,5 @@
-CC := clang++ -fsycl -fsycl-targets=nvptx64-nvidia-cuda
-MKL_HOME := /home/administrator/Milun/jaden/workspace/applications/mini-caffe/deps/lib/oneMKL/BLAS
-IRC_LIB := /opt/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin
+CC := dpcpp
+OPENCV_ROOT := /usr/include/opencv4
 
 DEBUG := -g
 
@@ -9,466 +8,456 @@ LD := $(CC)
 #DPCT2001:141: You can link with more library by add them here.
 LIB :=
 LIB := ${DEBUG} ${LIB}
-#LIB := -shared ${LIB}
-LIB := -L${IRC_LIB} -lirc ${LIB}
 LIB := -lprotobuf -lopenblas ${LIB}
+LIB := -qmkl ${LIB}
 
 FLAGS := 
 FLAGS := ${DEBUG} ${FLAGS}
 FLAGS := -fPIC ${FLAGS}
 FLAGS := -DPSTL_USE_PARALLEL_POLICIES=0 ${FLAGS}
-FLAGS := -I${MKL_HOME}/include ${FLAGS}
-
-MKL_FLAGS := 
-MKL_FLAGS := -lpthread -lm -ldl ${MKL_FLAGS}
-MKL_FLAGS := -lonemkl -lonemkl_blas_cublas ${MKL_FLAGS}
-MKL_FLAGS := -fsycl -lOpenCL ${MKL_FLAGS}
-MKL_FLAGS := -L${MKL_HOME}/lib ${MKL_FLAGS}
-MKL_FLAGS := -I${MKL_HOME}/include ${MKL_FLAGS}
-LIB := ${LIB} ${MKL_FLAGS}
 
 TARGET_0_SRC_0 = ./tools/benchmark.cpp
 TARGET_0_OBJ_0 = ./tools/benchmark.o
-TARGET_0_FLAG_0 = -DCAFFE_EXPORTS -DUSE_CUDA -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_0_FLAG_0 = -DCAFFE_EXPORTS -DUSE_CUDA -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_0 = ./src/layers/tile_layer.dp.cpp
 TARGET_1_OBJ_0 = ./src/layers/tile_layer.dp.o
-TARGET_1_FLAG_0 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_0 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_1 = ./src/layers/threshold_layer.dp.cpp
 TARGET_1_OBJ_1 = ./src/layers/threshold_layer.dp.o
-TARGET_1_FLAG_1 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_1 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_2 = ./src/layers/slice_layer.dp.cpp
 TARGET_1_OBJ_2 = ./src/layers/slice_layer.dp.o
-TARGET_1_FLAG_2 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_2 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_3 = ./src/layers/relu_layer.dp.cpp
 TARGET_1_OBJ_3 = ./src/layers/relu_layer.dp.o
-TARGET_1_FLAG_3 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_3 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_4 = ./src/layers/proposal_layer.dp.cpp
 TARGET_1_OBJ_4 = ./src/layers/proposal_layer.dp.o
-TARGET_1_FLAG_4 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_4 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_5 = ./src/layers/mvn_layer.dp.cpp
 TARGET_1_OBJ_5 = ./src/layers/mvn_layer.dp.o
-TARGET_1_FLAG_5 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_5 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_6 = ./src/layers/permute_layer.dp.cpp
 TARGET_1_OBJ_6 = ./src/layers/permute_layer.dp.o
-TARGET_1_FLAG_6 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_6 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_7 = ./src/layers/lrn_layer.dp.cpp
 TARGET_1_OBJ_7 = ./src/layers/lrn_layer.dp.o
-TARGET_1_FLAG_7 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_7 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_8 = ./src/layers/log_layer.dp.cpp
 TARGET_1_OBJ_8 = ./src/layers/log_layer.dp.o
-TARGET_1_FLAG_8 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_8 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_9 = ./src/layers/exp_layer.dp.cpp
 TARGET_1_OBJ_9 = ./src/layers/exp_layer.dp.o
-TARGET_1_FLAG_9 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_9 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_10 = ./src/layers/embed_layer.dp.cpp
 TARGET_1_OBJ_10 = ./src/layers/embed_layer.dp.o
-TARGET_1_FLAG_10 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_10 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_11 = ./src/layers/inner_product_layer.dp.cpp
 TARGET_1_OBJ_11 = ./src/layers/inner_product_layer.dp.o
-TARGET_1_FLAG_11 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_11 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_12 = ./src/layers/elu_layer.dp.cpp
 TARGET_1_OBJ_12 = ./src/layers/elu_layer.dp.o
-TARGET_1_FLAG_12 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_12 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_13 = ./src/layers/reduction_layer.dp.cpp
 TARGET_1_OBJ_13 = ./src/layers/reduction_layer.dp.o
-TARGET_1_FLAG_13 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_13 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_14 = ./src/layers/eltwise_layer.dp.cpp
 TARGET_1_OBJ_14 = ./src/layers/eltwise_layer.dp.o
-TARGET_1_FLAG_14 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_14 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_15 = ./src/layers/dropout_layer.dp.cpp
 TARGET_1_OBJ_15 = ./src/layers/dropout_layer.dp.o
-TARGET_1_FLAG_15 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_15 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_16 = ./src/layers/detection_output_layer.dp.cpp
 TARGET_1_OBJ_16 = ./src/layers/detection_output_layer.dp.o
-TARGET_1_FLAG_16 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_16 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_17 = ./src/layers/deconv_layer.dp.cpp
 TARGET_1_OBJ_17 = ./src/layers/deconv_layer.dp.o
-TARGET_1_FLAG_17 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_17 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_18 = ./src/layers/scale_layer.dp.cpp
 TARGET_1_OBJ_18 = ./src/layers/scale_layer.dp.o
-TARGET_1_FLAG_18 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_18 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_19 = ./src/layers/conv_layer.dp.cpp
 TARGET_1_OBJ_19 = ./src/layers/conv_layer.dp.o
-TARGET_1_FLAG_19 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_19 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_20 = ./src/layers/tanh_layer.dp.cpp
 TARGET_1_OBJ_20 = ./src/layers/tanh_layer.dp.o
-TARGET_1_FLAG_20 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_20 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_21 = ./src/layers/concat_layer.dp.cpp
 TARGET_1_OBJ_21 = ./src/layers/concat_layer.dp.o
-TARGET_1_FLAG_21 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_21 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_22 = ./src/layers/batch_norm_layer.dp.cpp
 TARGET_1_OBJ_22 = ./src/layers/batch_norm_layer.dp.o
-TARGET_1_FLAG_22 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_22 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_23 = ./src/layers/absval_layer.dp.cpp
 TARGET_1_OBJ_23 = ./src/layers/absval_layer.dp.o
-TARGET_1_FLAG_23 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_23 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_24 = ./src/util/math_functions.dp.cpp
 TARGET_1_OBJ_24 = ./src/util/math_functions.dp.o
-TARGET_1_FLAG_24 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_24 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_25 = ./src/util/im2col.dp.cpp
 TARGET_1_OBJ_25 = ./src/util/im2col.dp.o
-TARGET_1_FLAG_25 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_25 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_26 = ./src/util/bbox_util.dp.cpp
 TARGET_1_OBJ_26 = ./src/util/bbox_util.dp.o
-TARGET_1_FLAG_26 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_26 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_27 = ./src/layers/log_layer.cpp.dp.cpp
 TARGET_1_OBJ_27 = ./src/layers/log_layer.cpp.dp.o
-TARGET_1_FLAG_27 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_27 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_28 = ./src/layers/power_layer.dp.cpp
 TARGET_1_OBJ_28 = ./src/layers/power_layer.dp.o
-TARGET_1_FLAG_28 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_28 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_29 = ./src/layers/tile_layer.cpp
 TARGET_1_OBJ_29 = ./src/layers/tile_layer.o
-TARGET_1_FLAG_29 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_29 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_30 = ./src/layers/inner_product_layer.cpp
 TARGET_1_OBJ_30 = ./src/layers/inner_product_layer.o
-TARGET_1_FLAG_30 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_30 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_31 = ./src/layers/parameter_layer.cpp
 TARGET_1_OBJ_31 = ./src/layers/parameter_layer.o
-TARGET_1_FLAG_31 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_31 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_32 = ./src/layers/filter_layer.cpp
 TARGET_1_OBJ_32 = ./src/layers/filter_layer.o
-TARGET_1_FLAG_32 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_32 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_33 = ./src/layers/bias_layer.dp.cpp
 TARGET_1_OBJ_33 = ./src/layers/bias_layer.dp.o
-TARGET_1_FLAG_33 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_33 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_34 = ./src/layers/bias_layer.cpp
 TARGET_1_OBJ_34 = ./src/layers/bias_layer.o
-TARGET_1_FLAG_34 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_34 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_35 = ./src/layers/exp_layer.cpp.dp.cpp
 TARGET_1_OBJ_35 = ./src/layers/exp_layer.cpp.dp.o
-TARGET_1_FLAG_35 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_35 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_36 = ./src/layers/embed_layer.cpp
 TARGET_1_OBJ_36 = ./src/layers/embed_layer.o
-TARGET_1_FLAG_36 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_36 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_37 = ./src/layers/conv_dw_layer.dp.cpp
 TARGET_1_OBJ_37 = ./src/layers/conv_dw_layer.dp.o
-TARGET_1_FLAG_37 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_37 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_38 = ./src/layers/dropout_layer.cpp
 TARGET_1_OBJ_38 = ./src/layers/dropout_layer.o
-TARGET_1_FLAG_38 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_38 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_39 = ./src/layers/softmax_layer.dp.cpp
 TARGET_1_OBJ_39 = ./src/layers/softmax_layer.dp.o
-TARGET_1_FLAG_39 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_39 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_40 = ./src/layers/conv_layer.cpp
 TARGET_1_OBJ_40 = ./src/layers/conv_layer.o
-TARGET_1_FLAG_40 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_40 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_41 = ./src/blob.cpp
 TARGET_1_OBJ_41 = ./src/blob.o
-TARGET_1_FLAG_41 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_41 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_42 = ./src/net.cpp
 TARGET_1_OBJ_42 = ./src/net.o
-TARGET_1_FLAG_42 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_42 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_43 = ./src/layers/crop_layer.dp.cpp
 TARGET_1_OBJ_43 = ./src/layers/crop_layer.dp.o
-TARGET_1_FLAG_43 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_43 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_44 = ./src/util/upgrade_proto.cpp
 TARGET_1_OBJ_44 = ./src/util/upgrade_proto.o
-TARGET_1_FLAG_44 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_44 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_45 = ./src/layers/batch_norm_layer.cpp
 TARGET_1_OBJ_45 = ./src/layers/batch_norm_layer.o
-TARGET_1_FLAG_45 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_45 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_46 = ./src/layers/bnll_layer.dp.cpp
 TARGET_1_OBJ_46 = ./src/layers/bnll_layer.dp.o
-TARGET_1_FLAG_46 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_46 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_47 = ./src/layers/bn_layer.cpp
 TARGET_1_OBJ_47 = ./src/layers/bn_layer.o
-TARGET_1_FLAG_47 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_47 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_48 = ./src/layers/detection_output_layer.cpp
 TARGET_1_OBJ_48 = ./src/layers/detection_output_layer.o
-TARGET_1_FLAG_48 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_48 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_49 = ./src/layers/concat_layer.cpp
 TARGET_1_OBJ_49 = ./src/layers/concat_layer.o
-TARGET_1_FLAG_49 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_49 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_50 = ./src/layers/mvn_layer.cpp
 TARGET_1_OBJ_50 = ./src/layers/mvn_layer.o
-TARGET_1_FLAG_50 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_50 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_51 = ./src/layers/sigmoid_layer.cpp
 TARGET_1_OBJ_51 = ./src/layers/sigmoid_layer.o
-TARGET_1_FLAG_51 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_51 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_52 = ./src/layers/pooling_layer.dp.cpp
 TARGET_1_OBJ_52 = ./src/layers/pooling_layer.dp.o
-TARGET_1_FLAG_52 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_52 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_53 = ./src/syncedmem.cpp.dp.cpp
 TARGET_1_OBJ_53 = ./src/syncedmem.cpp.dp.o
-TARGET_1_FLAG_53 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_53 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_54 = ./src/layers/normalize_layer.cpp.dp.cpp
 TARGET_1_OBJ_54 = ./src/layers/normalize_layer.cpp.dp.o
-TARGET_1_FLAG_54 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_54 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_55 = ./src/layers/prelu_layer.dp.cpp
 TARGET_1_OBJ_55 = ./src/layers/prelu_layer.dp.o
-TARGET_1_FLAG_55 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_55 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_56 = ./src/layers/prelu_layer.cpp
 TARGET_1_OBJ_56 = ./src/layers/prelu_layer.o
-TARGET_1_FLAG_56 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_56 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_57 = ./src/layers/input_layer.cpp
 TARGET_1_OBJ_57 = ./src/layers/input_layer.o
-TARGET_1_FLAG_57 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_57 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_58 = ./src/layers/absval_layer.cpp
 TARGET_1_OBJ_58 = ./src/layers/absval_layer.o
-TARGET_1_FLAG_58 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_58 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_59 = ./src/layers/filter_layer.dp.cpp
 TARGET_1_OBJ_59 = ./src/layers/filter_layer.dp.o
-TARGET_1_FLAG_59 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_59 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_60 = ./src/layers/elu_layer.cpp.dp.cpp
 TARGET_1_OBJ_60 = ./src/layers/elu_layer.cpp.dp.o
-TARGET_1_FLAG_60 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_60 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_61 = ./src/layers/psroi_pooling_layer.dp.cpp
 TARGET_1_OBJ_61 = ./src/layers/psroi_pooling_layer.dp.o
-TARGET_1_FLAG_61 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_61 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_62 = ./src/common.cpp.dp.cpp
 TARGET_1_OBJ_62 = ./src/common.cpp.dp.o
-TARGET_1_FLAG_62 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_62 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_63 = ./src/proto/caffe.pb.cc
 TARGET_1_OBJ_63 = ./src/proto/caffe.pb.o
-TARGET_1_FLAG_63 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_63 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_64 = ./src/layers/reshape_layer.cpp
 TARGET_1_OBJ_64 = ./src/layers/reshape_layer.o
-TARGET_1_FLAG_64 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_64 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_65 = ./src/layers/sigmoid_layer.dp.cpp
 TARGET_1_OBJ_65 = ./src/layers/sigmoid_layer.dp.o
-TARGET_1_FLAG_65 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_65 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_66 = ./src/layers/conv_dw_layer.cpp
 TARGET_1_OBJ_66 = ./src/layers/conv_dw_layer.o
-TARGET_1_FLAG_66 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_66 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_67 = ./src/layers/softmax_layer.cpp.dp.cpp
 TARGET_1_OBJ_67 = ./src/layers/softmax_layer.cpp.dp.o
-TARGET_1_FLAG_67 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_67 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_68 = ./src/layers/base_conv_layer.cpp
 TARGET_1_OBJ_68 = ./src/layers/base_conv_layer.o
-TARGET_1_FLAG_68 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_68 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_69 = ./src/layers/crop_layer.cpp
 TARGET_1_OBJ_69 = ./src/layers/crop_layer.o
-TARGET_1_FLAG_69 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_69 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_70 = ./src/layers/proposal_layer.cpp
 TARGET_1_OBJ_70 = ./src/layers/proposal_layer.o
-TARGET_1_FLAG_70 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_70 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_71 = ./src/layers/bn_layer.dp.cpp
 TARGET_1_OBJ_71 = ./src/layers/bn_layer.dp.o
-TARGET_1_FLAG_71 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_71 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_72 = ./src/layers/bnll_layer.cpp.dp.cpp
 TARGET_1_OBJ_72 = ./src/layers/bnll_layer.cpp.dp.o
-TARGET_1_FLAG_72 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_72 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_73 = ./src/profiler.cpp
 TARGET_1_OBJ_73 = ./src/profiler.o
-TARGET_1_FLAG_73 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_73 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_74 = ./src/layers/lrn_layer.cpp
 TARGET_1_OBJ_74 = ./src/layers/lrn_layer.o
-TARGET_1_FLAG_74 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_74 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_75 = ./src/layers/threshold_layer.cpp
 TARGET_1_OBJ_75 = ./src/layers/threshold_layer.o
-TARGET_1_FLAG_75 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_75 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_76 = ./src/layers/normalize_layer.dp.cpp
 TARGET_1_OBJ_76 = ./src/layers/normalize_layer.dp.o
-TARGET_1_FLAG_76 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_76 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_77 = ./src/layers/neuron_layer.cpp
 TARGET_1_OBJ_77 = ./src/layers/neuron_layer.o
-TARGET_1_FLAG_77 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_77 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_78 = ./src/layers/relu_layer.cpp
 TARGET_1_OBJ_78 = ./src/layers/relu_layer.o
-TARGET_1_FLAG_78 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_78 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_79 = ./src/layers/pooling_layer.cpp.dp.cpp
 TARGET_1_OBJ_79 = ./src/layers/pooling_layer.cpp.dp.o
-TARGET_1_FLAG_79 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_79 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_80 = ./src/layers/spp_layer.cpp.dp.cpp
 TARGET_1_OBJ_80 = ./src/layers/spp_layer.cpp.dp.o
-TARGET_1_FLAG_80 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_80 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_81 = ./src/layers/power_layer.cpp
 TARGET_1_OBJ_81 = ./src/layers/power_layer.o
-TARGET_1_FLAG_81 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_81 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_82 = ./src/layers/argmax_layer.cpp
 TARGET_1_OBJ_82 = ./src/layers/argmax_layer.o
-TARGET_1_FLAG_82 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_82 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_83 = ./src/layers/prior_box_layer.cpp.dp.cpp
 TARGET_1_OBJ_83 = ./src/layers/prior_box_layer.cpp.dp.o
-TARGET_1_FLAG_83 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_83 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_84 = ./src/layers/reduction_layer.cpp
 TARGET_1_OBJ_84 = ./src/layers/reduction_layer.o
-TARGET_1_FLAG_84 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_84 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_85 = ./src/layers/roi_pooling_layer.dp.cpp
 TARGET_1_OBJ_85 = ./src/layers/roi_pooling_layer.dp.o
-TARGET_1_FLAG_85 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_85 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_86 = ./src/layers/deconv_layer.cpp
 TARGET_1_OBJ_86 = ./src/layers/deconv_layer.o
-TARGET_1_FLAG_86 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_86 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_87 = ./src/layers/flatten_layer.cpp
 TARGET_1_OBJ_87 = ./src/layers/flatten_layer.o
-TARGET_1_FLAG_87 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_87 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_88 = ./src/layers/roi_pooling_layer.cpp.dp.cpp
 TARGET_1_OBJ_88 = ./src/layers/roi_pooling_layer.cpp.dp.o
-TARGET_1_FLAG_88 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_88 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_89 = ./src/layers/scale_layer.cpp
 TARGET_1_OBJ_89 = ./src/layers/scale_layer.o
-TARGET_1_FLAG_89 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_89 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_90 = ./src/layers/eltwise_layer.cpp
 TARGET_1_OBJ_90 = ./src/layers/eltwise_layer.o
-TARGET_1_FLAG_90 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_90 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_91 = ./src/layers/shuffle_channel_layer.cpp
 TARGET_1_OBJ_91 = ./src/layers/shuffle_channel_layer.o
-TARGET_1_FLAG_91 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_91 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_92 = ./src/layers/shuffle_channel_layer.dp.cpp
 TARGET_1_OBJ_92 = ./src/layers/shuffle_channel_layer.dp.o
-TARGET_1_FLAG_92 = -DUSE_CUDA -DNVCC -I./include  -I ./include ${FLAGS}
+TARGET_1_FLAG_92 = -DUSE_CUDA -DNVCC -I./include -I ./include ${FLAGS}
 
 TARGET_1_SRC_93 = ./src/layers/slice_layer.cpp
 TARGET_1_OBJ_93 = ./src/layers/slice_layer.o
-TARGET_1_FLAG_93 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_93 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_94 = ./src/layers/psroi_pooling_layer.cpp.dp.cpp
 TARGET_1_OBJ_94 = ./src/layers/psroi_pooling_layer.cpp.dp.o
-TARGET_1_FLAG_94 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_94 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_95 = ./src/layers/split_layer.cpp
 TARGET_1_OBJ_95 = ./src/layers/split_layer.o
-TARGET_1_FLAG_95 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_95 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_96 = ./src/layers/tanh_layer.cpp.dp.cpp
 TARGET_1_OBJ_96 = ./src/layers/tanh_layer.cpp.dp.o
-TARGET_1_FLAG_96 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_96 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_97 = ./src/util/bbox_util.cpp.dp.cpp
 TARGET_1_OBJ_97 = ./src/util/bbox_util.cpp.dp.o
-TARGET_1_FLAG_97 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_97 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_98 = ./src/util/im2col.cpp
 TARGET_1_OBJ_98 = ./src/util/im2col.o
-TARGET_1_FLAG_98 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_98 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_99 = ./src/c_api.cpp
 TARGET_1_OBJ_99 = ./src/c_api.o
-TARGET_1_FLAG_99 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_99 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_100 = ./src/layers/permute_layer.cpp
 TARGET_1_OBJ_100 = ./src/layers/permute_layer.o
-TARGET_1_FLAG_100 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_100 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_101 = ./src/util/io.cpp
 TARGET_1_OBJ_101 = ./src/util/io.o
-TARGET_1_FLAG_101 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_101 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_1_SRC_102 = ./src/util/math_functions.cpp.dp.cpp
 TARGET_1_OBJ_102 = ./src/util/math_functions.cpp.dp.o
-TARGET_1_FLAG_102 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_1_FLAG_102 = -DCAFFE_EXPORTS -DUSE_CUDA -Dcaffe_EXPORTS -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_2_SRC_0 = ./tests/run_net.cpp
 TARGET_2_OBJ_0 = ./tests/run_net.o
-TARGET_2_FLAG_0 = -DCAFFE_EXPORTS -DUSE_CUDA -I./include -std=c++17  -I ./include ${FLAGS}
+TARGET_2_FLAG_0 = -DCAFFE_EXPORTS -DUSE_CUDA -I./include -std=c++17 -I ./include ${FLAGS}
 
 TARGET_3_SRC_0 = ./tests/run_net.c.dp.cpp
 TARGET_3_OBJ_0 = ./tests/run_net.c.dp.o
-TARGET_3_FLAG_0 = -DCAFFE_EXPORTS -DUSE_CUDA -I./include  -I ./include ${FLAGS}
+TARGET_3_FLAG_0 = -DCAFFE_EXPORTS -DUSE_CUDA -I./include -I ./include ${FLAGS}
 
 TARGET_0 := benchmark
 TARGET_1 := libcaffe.so
 TARGET_2 := run_net
 TARGET_3 := run_net_c
 
-TARGET :=  ${TARGET_0} ${TARGET_1} ${TARGET_2} ${TARGET_3}
+TARGET := ${TARGET_0} ${TARGET_1} ${TARGET_2} ${TARGET_3}
 
 .PHONY:all clean
-OBJS_0 :=  ${TARGET_0_OBJ_0}
-OBJS_1 :=  ${TARGET_1_OBJ_0} ${TARGET_1_OBJ_1} ${TARGET_1_OBJ_2} ${TARGET_1_OBJ_3} ${TARGET_1_OBJ_4} ${TARGET_1_OBJ_5} ${TARGET_1_OBJ_6} ${TARGET_1_OBJ_7} ${TARGET_1_OBJ_8} ${TARGET_1_OBJ_9} ${TARGET_1_OBJ_10} ${TARGET_1_OBJ_11} ${TARGET_1_OBJ_12} ${TARGET_1_OBJ_13} ${TARGET_1_OBJ_14} ${TARGET_1_OBJ_15} ${TARGET_1_OBJ_16} ${TARGET_1_OBJ_17} ${TARGET_1_OBJ_18} ${TARGET_1_OBJ_19} ${TARGET_1_OBJ_20} ${TARGET_1_OBJ_21} ${TARGET_1_OBJ_22} ${TARGET_1_OBJ_23} ${TARGET_1_OBJ_24} ${TARGET_1_OBJ_25} ${TARGET_1_OBJ_26} ${TARGET_1_OBJ_27} ${TARGET_1_OBJ_28} ${TARGET_1_OBJ_29} ${TARGET_1_OBJ_30} ${TARGET_1_OBJ_31} ${TARGET_1_OBJ_32} ${TARGET_1_OBJ_33} ${TARGET_1_OBJ_34} ${TARGET_1_OBJ_35} ${TARGET_1_OBJ_36} ${TARGET_1_OBJ_37} ${TARGET_1_OBJ_38} ${TARGET_1_OBJ_39} ${TARGET_1_OBJ_40} ${TARGET_1_OBJ_41} ${TARGET_1_OBJ_42} ${TARGET_1_OBJ_43} ${TARGET_1_OBJ_44} ${TARGET_1_OBJ_45} ${TARGET_1_OBJ_46} ${TARGET_1_OBJ_47} ${TARGET_1_OBJ_48} ${TARGET_1_OBJ_49} ${TARGET_1_OBJ_50} ${TARGET_1_OBJ_51} ${TARGET_1_OBJ_52} ${TARGET_1_OBJ_53} ${TARGET_1_OBJ_54} ${TARGET_1_OBJ_55} ${TARGET_1_OBJ_56} ${TARGET_1_OBJ_57} ${TARGET_1_OBJ_58} ${TARGET_1_OBJ_59} ${TARGET_1_OBJ_60} ${TARGET_1_OBJ_61} ${TARGET_1_OBJ_62} ${TARGET_1_OBJ_63} ${TARGET_1_OBJ_64} ${TARGET_1_OBJ_65} ${TARGET_1_OBJ_66} ${TARGET_1_OBJ_67} ${TARGET_1_OBJ_68} ${TARGET_1_OBJ_69} ${TARGET_1_OBJ_70} ${TARGET_1_OBJ_71} ${TARGET_1_OBJ_72} ${TARGET_1_OBJ_73} ${TARGET_1_OBJ_74} ${TARGET_1_OBJ_75} ${TARGET_1_OBJ_76} ${TARGET_1_OBJ_77} ${TARGET_1_OBJ_78} ${TARGET_1_OBJ_79} ${TARGET_1_OBJ_80} ${TARGET_1_OBJ_81} ${TARGET_1_OBJ_82} ${TARGET_1_OBJ_83} ${TARGET_1_OBJ_84} ${TARGET_1_OBJ_85} ${TARGET_1_OBJ_86} ${TARGET_1_OBJ_87} ${TARGET_1_OBJ_88} ${TARGET_1_OBJ_89} ${TARGET_1_OBJ_90} ${TARGET_1_OBJ_91} ${TARGET_1_OBJ_92} ${TARGET_1_OBJ_93} ${TARGET_1_OBJ_94} ${TARGET_1_OBJ_95} ${TARGET_1_OBJ_96} ${TARGET_1_OBJ_97} ${TARGET_1_OBJ_98} ${TARGET_1_OBJ_99} ${TARGET_1_OBJ_100} ${TARGET_1_OBJ_101} ${TARGET_1_OBJ_102}
-OBJS_2 :=  ${TARGET_2_OBJ_0}
-OBJS_3 :=  ${TARGET_3_OBJ_0}
+OBJS_0 := ${TARGET_0_OBJ_0}
+OBJS_1 := ${TARGET_1_OBJ_0} ${TARGET_1_OBJ_1} ${TARGET_1_OBJ_2} ${TARGET_1_OBJ_3} ${TARGET_1_OBJ_4} ${TARGET_1_OBJ_5} ${TARGET_1_OBJ_6} ${TARGET_1_OBJ_7} ${TARGET_1_OBJ_8} ${TARGET_1_OBJ_9} ${TARGET_1_OBJ_10} ${TARGET_1_OBJ_11} ${TARGET_1_OBJ_12} ${TARGET_1_OBJ_13} ${TARGET_1_OBJ_14} ${TARGET_1_OBJ_15} ${TARGET_1_OBJ_16} ${TARGET_1_OBJ_17} ${TARGET_1_OBJ_18} ${TARGET_1_OBJ_19} ${TARGET_1_OBJ_20} ${TARGET_1_OBJ_21} ${TARGET_1_OBJ_22} ${TARGET_1_OBJ_23} ${TARGET_1_OBJ_24} ${TARGET_1_OBJ_25} ${TARGET_1_OBJ_26} ${TARGET_1_OBJ_27} ${TARGET_1_OBJ_28} ${TARGET_1_OBJ_29} ${TARGET_1_OBJ_30} ${TARGET_1_OBJ_31} ${TARGET_1_OBJ_32} ${TARGET_1_OBJ_33} ${TARGET_1_OBJ_34} ${TARGET_1_OBJ_35} ${TARGET_1_OBJ_36} ${TARGET_1_OBJ_37} ${TARGET_1_OBJ_38} ${TARGET_1_OBJ_39} ${TARGET_1_OBJ_40} ${TARGET_1_OBJ_41} ${TARGET_1_OBJ_42} ${TARGET_1_OBJ_43} ${TARGET_1_OBJ_44} ${TARGET_1_OBJ_45} ${TARGET_1_OBJ_46} ${TARGET_1_OBJ_47} ${TARGET_1_OBJ_48} ${TARGET_1_OBJ_49} ${TARGET_1_OBJ_50} ${TARGET_1_OBJ_51} ${TARGET_1_OBJ_52} ${TARGET_1_OBJ_53} ${TARGET_1_OBJ_54} ${TARGET_1_OBJ_55} ${TARGET_1_OBJ_56} ${TARGET_1_OBJ_57} ${TARGET_1_OBJ_58} ${TARGET_1_OBJ_59} ${TARGET_1_OBJ_60} ${TARGET_1_OBJ_61} ${TARGET_1_OBJ_62} ${TARGET_1_OBJ_63} ${TARGET_1_OBJ_64} ${TARGET_1_OBJ_65} ${TARGET_1_OBJ_66} ${TARGET_1_OBJ_67} ${TARGET_1_OBJ_68} ${TARGET_1_OBJ_69} ${TARGET_1_OBJ_70} ${TARGET_1_OBJ_71} ${TARGET_1_OBJ_72} ${TARGET_1_OBJ_73} ${TARGET_1_OBJ_74} ${TARGET_1_OBJ_75} ${TARGET_1_OBJ_76} ${TARGET_1_OBJ_77} ${TARGET_1_OBJ_78} ${TARGET_1_OBJ_79} ${TARGET_1_OBJ_80} ${TARGET_1_OBJ_81} ${TARGET_1_OBJ_82} ${TARGET_1_OBJ_83} ${TARGET_1_OBJ_84} ${TARGET_1_OBJ_85} ${TARGET_1_OBJ_86} ${TARGET_1_OBJ_87} ${TARGET_1_OBJ_88} ${TARGET_1_OBJ_89} ${TARGET_1_OBJ_90} ${TARGET_1_OBJ_91} ${TARGET_1_OBJ_92} ${TARGET_1_OBJ_93} ${TARGET_1_OBJ_94} ${TARGET_1_OBJ_95} ${TARGET_1_OBJ_96} ${TARGET_1_OBJ_97} ${TARGET_1_OBJ_98} ${TARGET_1_OBJ_99} ${TARGET_1_OBJ_100} ${TARGET_1_OBJ_101} ${TARGET_1_OBJ_102}
+OBJS_2 := ${TARGET_2_OBJ_0}
+OBJS_3 := ${TARGET_3_OBJ_0}
 all: $(TARGET)
 $(TARGET_0): $(OBJS_0)
 	$(LD) -o $@ $^ $(LIB) -L./ -lcaffe -lopencv_core
 
 $(TARGET_0_OBJ_0):$(TARGET_0_SRC_0)
-	$(CC) -I/usr/include/opencv4/opencv -I/usr/include/opencv4 -c ${TARGET_0_SRC_0} -o ${TARGET_0_OBJ_0} $(TARGET_0_FLAG_0)
+	$(CC) -I${OPENCV_ROOT}/opencv -I${OPENCV_ROOT} -c ${TARGET_0_SRC_0} -o ${TARGET_0_OBJ_0} $(TARGET_0_FLAG_0)
 
 $(TARGET_1): $(OBJS_1)
 	$(LD) -o $@ $^ $(LIB) -shared
@@ -795,4 +784,4 @@ $(TARGET_3_OBJ_0):$(TARGET_3_SRC_0)
 	$(CC) -c ${TARGET_3_SRC_0} -o ${TARGET_3_OBJ_0} $(TARGET_3_FLAG_0)
 
 clean:
-	rm -f  ${OBJS_0} ${OBJS_1} ${OBJS_2} ${OBJS_3} $(TARGET)
+	rm -f ${OBJS_0} ${OBJS_1} ${OBJS_2} ${OBJS_3} $(TARGET)
