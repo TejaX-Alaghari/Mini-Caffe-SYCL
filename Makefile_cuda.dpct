@@ -1,7 +1,12 @@
 CC := clang++ -fsycl -fsycl-targets=nvptx64-nvidia-cuda
+
 MKL_HOME := /home/administrator/Milun/jaden/workspace/applications/mini-caffe/deps/lib/oneMKL/BLAS
+
 IRC_LIB := /opt/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin
+
 OPENCV_ROOT := /usr/include/opencv4
+OPENCV_INC := opencv
+OPENCV_LIB := opencv_core
 
 DEBUG := -g
 
@@ -466,10 +471,10 @@ OBJS_2 :=  ${TARGET_2_OBJ_0}
 OBJS_3 :=  ${TARGET_3_OBJ_0}
 all: $(TARGET)
 $(TARGET_0): $(OBJS_0)
-	$(LD) -o $@ $^ $(LIB) -L./ -lcaffe -lopencv_core
+	$(LD) -o $@ $^ $(LIB) -L./ -lcaffe -l${OPENCV_LIB}
 
 $(TARGET_0_OBJ_0):$(TARGET_0_SRC_0)
-	$(CC) -I${OPENCV_ROOT}/opencv -I${OPENCV_ROOT} -c ${TARGET_0_SRC_0} -o ${TARGET_0_OBJ_0} $(TARGET_0_FLAG_0)
+	$(CC) -I${OPENCV_ROOT}/${OPENCV_INC} -I${OPENCV_ROOT} -c ${TARGET_0_SRC_0} -o ${TARGET_0_OBJ_0} $(TARGET_0_FLAG_0)
 
 $(TARGET_1): $(OBJS_1)
 	$(LD) -o $@ $^ $(LIB) -shared
